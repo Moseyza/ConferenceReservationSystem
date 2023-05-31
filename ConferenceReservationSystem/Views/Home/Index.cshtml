@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" style="background-image: url(/images/ConferenceRoom.jpg); height: 500px;
+    background-size: cover;
+    padding-top: 180px;">
+
+    <div class="alert alert-success" style="opacity: 80%;
+    width: fit-content;
+    margin: auto;
+    background-color: #e2e3e5;" role="alert">
+        <h4 class="alert-heading">خوش آمدید!</h4>
+        <p>سامانه تعیین وقت شرکت در همایش های سازمان بازنشستگی شهرداری تهران</p>
+    </div>
+    <div class="d-block d-sm-none">
+        <button class="btn btn-success" style="padding: 20px;" onclick="window.location.href = '@Url.Action("Login", "Account")'">ورود</button>
+    </div>
+</div>

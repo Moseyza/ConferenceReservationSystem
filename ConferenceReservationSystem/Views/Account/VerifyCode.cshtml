@@ -1,0 +1,40 @@
+﻿@model ConferenceReservationSystem.Models.Account.VerifyCodeModel
+
+@{
+    ViewData["Title"] = "تایید کد امنیتی";
+}
+
+<h1>تایید کد امنیتی</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="VerifyCode" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="NationalCode" class="form-control hiden-nc" type="hidden" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="تایید" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+        const urlSearchParam = new URLSearchParams(window.location.search);
+            $(".hiden-nc")[0].val(urlSearchParam.get('nationalCode'));
+            alert(urlSearchParam.get('nationalCode'));
+        });
+    </script>
+}

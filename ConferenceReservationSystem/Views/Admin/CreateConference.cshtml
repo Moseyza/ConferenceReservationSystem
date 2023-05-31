@@ -1,0 +1,70 @@
+﻿@model ConferenceReservationSystem.Models.Conference.ConferenceEditModel
+
+@{
+    ViewData["Title"] = "ایجاد همایش جدید";
+}
+
+<h1>ایجاد همایش جدید</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateConference">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShamsiDateFrom" class="control-label"></label>
+                <input asp-for="ShamsiDateFrom" class="form-control persian-date-input" />
+                <span asp-validation-for="ShamsiDateFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShamsiDateTo" class="control-label "></label>
+                <input asp-for="ShamsiDateTo" class="form-control persian-date-input" />
+                <span asp-validation-for="ShamsiDateTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeFrom" class="control-label"></label>
+                <input asp-for="TimeFrom" class="form-control time-input" />
+                <span asp-validation-for="TimeFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeTo" class="control-label"></label>
+                <input asp-for="TimeTo" class="form-control time-input" />
+                <span asp-validation-for="TimeTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParticipantsCount" class="control-label"></label>
+                <input asp-for="ParticipantsCount" class="form-control" />
+                <span asp-validation-for="ParticipantsCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationAddress" class="control-label"></label>
+                <input asp-for="LocationAddress" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="@ViewBag.StatusList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ConferenceList">بازگشت به فهرست</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ConferenceReservationSystem.Models.Conference.ConferenceListItemModel>
+
+@{
+    ViewData["Title"] = "فرست همایش ها";
+}
+
+<h1>فهرست همایش ها</h1>
+
+<p>
+    <a asp-action="CreateConference">جدید</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Row)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShamsiDateFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShamsiDateTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantsCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Row)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShamsiDateFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShamsiDateTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParticipantsCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "EditConference", new {  id=item.Id }) |
+                    @*  @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("حذف", "DeleteConference", new { id = item.Id} , new  { onclick = "return confirm('آیا برای حذف اطمینان دارید؟');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
