@@ -88,6 +88,12 @@
                     persian: {
                         locale: 'fa'
                     }
+                },
+                onSelect : function(date){
+                   
+                    if (typeof onDateSelected != "undefined"){
+                        onDateSelected(date);
+                    }
                 }
             });
             $(".time-input").pDatepicker({

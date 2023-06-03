@@ -49,7 +49,7 @@ namespace ConferenceReservationSystem.Controllers
             {
                 try
                 {
-                    var conference = await _unitOfWork.Context.Conferences.FirstOrDefaultAsync(x => x.Id == model.ConferenceId);
+                    var conference = await _unitOfWork.Context.Conferences.Include(x=>x.ConferenceUsers).FirstOrDefaultAsync(x => x.Id == model.ConferenceId);
                     if (conference != null)
                     {
                         var selectedDate = DateTimeMapper.GetDateTimeFromShamsiDate(model.Date);
@@ -115,8 +115,8 @@ namespace ConferenceReservationSystem.Controllers
                     model.ShamsiDateTo = DateTimeMapper.GetShamsiDate(conference.DateTo);
                     model.TimeTo = DateTimeMapper.GetTimeString(conference.TimeTo);
                     model.TimeFrom = DateTimeMapper.GetTimeString(conference.TimeFrom);
-                    
-                   //model.RemainingCapacity = CalcRemainingCapacity(conference, selectedDate);
+
+                    model.DailyCapacity = conference.ParticipantsCount;
                     model.LocationAddress = conference.LocationAddress;
                 }
                 return PartialView("_ConferenceDetail", model);
@@ -125,9 +125,32 @@ namespace ConferenceReservationSystem.Controllers
             return PartialView("_ConferenceDetail", null);
         }
 
+        public async Task<int> GetRemainingCapacity(Guid conferenceId, long dateUnix) 
+        {
+            
+            try
+            {
+                var conference = await _unitOfWork.Context.Conferences.Include(x => x.ConferenceUsers).FirstOrDefaultAsync(x => x.Id == conferenceId);
+                var date =  DateTimeOffset.FromUnixTimeMilliseconds(dateUnix).DateTime;
+                if (conference != null)
+                {
+                    if (date.Date > conference.DateTo || date.Date < conference.DateFrom)
+                        return 0;
+
+                    return CalcRemainingCapacity(conference, date.Date);
+                }
+                return 0;
+            }
+            catch 
+            {
+                return 0;
+            }
+        }
+
         private int CalcRemainingCapacity(Conference conference , DateTime date)
         {
-            var usedCapacity = conference.ConferenceUsers.Where(x=>x.Date == date).Sum(x => x.AccompanyingsCount) + conference.ConferenceUsers.Count();
+            var participationInDate = conference.ConferenceUsers.Where(x => x.Date == date);
+            var usedCapacity = participationInDate.Sum(x => x.AccompanyingsCount) + participationInDate.Count();
             var result = conference.ParticipantsCount - usedCapacity;
             return result;
         }

@@ -18,8 +18,8 @@ namespace ConferenceReservationSystem.Models.Conference
         public string TimeFrom { get; set; }
         [Display(Name = "تا ساعت:")]
         public string TimeTo { get; set; }
-        [Display(Name = "ظرفیت باقی مانده:")]
-        public int RemainingCapacity { get; set; }
+        [Display(Name = "ظرفیت در هر روز:")]
+        public int DailyCapacity { get; set; }
         [Display(Name = "محل برگزاری:")]
         public string LocationAddress { get; set; }
         [Display(Name = "توضیحات:")]

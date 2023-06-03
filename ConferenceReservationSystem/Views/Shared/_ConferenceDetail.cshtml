@@ -1,56 +1,58 @@
 ﻿@model ConferenceReservationSystem.Models.Conference.ConferenceDetailModel
 
-<div style= " border: 2px solid greenyellow; border-radius: 5px; padding: 5px">
-   
-    <dl class="row">
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.ShamsiDateFrom)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.ShamsiDateFrom)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.ShamsiDateTo)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.ShamsiDateTo)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.TimeFrom)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.TimeFrom)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.TimeTo)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.TimeTo)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.RemainingCapacity)
-        </dt>
-        <dd class = "col-sm-5" style="color:red">
-            @Html.DisplayFor(model => model.RemainingCapacity)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.LocationAddress)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.LocationAddress)
-        </dd>
-        <dt class = "col-sm-5">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-5">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
+@if (Model != null && !string.IsNullOrEmpty(Model.Title))
+{
+    <div style= " border: 2px solid greenyellow; border-radius: 5px; padding: 5px">
 
+        <dl class="row">
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.ShamsiDateFrom)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.ShamsiDateFrom)
+            </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.ShamsiDateTo)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.ShamsiDateTo)
+            </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.TimeFrom)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.TimeFrom)
+            </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.TimeTo)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.TimeTo)
+            </dd>
+              <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.DailyCapacity)
+        </dt>
+        <dd class = "col-sm-5" >
+            @Html.DisplayFor(model => model.DailyCapacity)
+        </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.LocationAddress)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.LocationAddress)
+            </dd>
+            <dt class = "col-sm-5">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-5">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+}
